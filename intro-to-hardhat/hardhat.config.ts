@@ -13,10 +13,29 @@ const config: HardhatUserConfig = {
       url: `${SEPOLIA_RPC}`,
       accounts: SEPOLIA_PRIVATE_KEY ? [SEPOLIA_PRIVATE_KEY] : [],
     },
+    // for testnet
+    'lisk-sepolia': {
+      url: 'https://rpc.sepolia-api.lisk.com',  
+      gasPrice: 1000000000,
+      accounts: SEPOLIA_PRIVATE_KEY ? [SEPOLIA_PRIVATE_KEY] : [],
+    },
   },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
+    customChains: [
+      {
+          network: "lisk-sepolia",
+          chainId: 4202,
+          urls: {
+              apiURL: "https://sepolia-blockscout.lisk.com/api",
+              browserURL: "https://sepolia-blockscout.lisk.com"
+          }
+      }
+    ]
   },
+  sourcify: {
+    enabled: false
+  }
 };
 
 export default config;
